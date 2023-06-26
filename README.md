@@ -58,4 +58,124 @@ Steps -
     
     ![thresh](https://github.com/anchit1704/HorseBoneSegmentationProject/assets/17884278/1e930f82-5af9-4692-aae7-ea01b98797e5)
 
+5. Visualizing the results and measuring the performance
+
+   ```
+   # Image registration with green(ground truth) and red images(threshold based)
+
+   import numpy as np
+   import matplotlib.pyplot as plt
+   import cv2
+   import pandas as pd
+   #for loop for iterating every slides
+   metrics_list = []
+   for k in range(45, 200):
+       # create green images from 3D slicer segmentation images
+       new_input =np.zeros((512,512,3))
+       for i in range(extracted_voxels.T[k,:,:].shape[0]):
+           for j in range(extracted_voxels.T[k,:,:].shape[1]):
+               if extracted_voxels.T[k,:,:][i,j] != 0 and j>250:
+                   new_input[i,j,1] = 255
+                     
+       #Obtain threshold based images            
+       gray = data.T[k].copy()
+       gray_r = gray.reshape(gray.shape[0]*gray.shape[1])
+       thresh = 550
+       for j in range(gray_r.shape[0]):
+           if gray_r[j] > thresh and j < 174080:
+               gray_r[j] = 1
+           else:
+               gray_r[j] = 0
+   
+       gray = gray_r.reshape(gray.shape[0],gray.shape[1])
+       plt.imshow(gray, cmap='gray')
+       print(k)
+       #plt.savefig('E:\\Downloads\\DowloadsLatest\\UKY\\Research\\HorseBoneSegmentation\\Results\\Threshold\\Tizadaisy LF\\'+'Slice_'+str(k))
+       plt.show()
+       
+       img = gray.copy()
+       edge_image = cv2.Canny(img.astype(np.uint8),0,1)
+       #showing Edged image
+       plt.imshow(edge_image, cmap='gray')
+       plt.show()
+       
+       #Create red images from threshold segmentation images
+       new_out = np.zeros((512,512,3))
+       for i in range(gray.shape[0]):
+           for j in range(gray.shape[1]):
+               if gray[i,j] != 0 and j>200:
+                   new_out[i,j,0] = 255
+       
+       #Get green and red images overlapped
+       print(k)          
+       plt.figure(figsize = (10,10))
+       plt.imshow(new_input)
+       plt.imshow(new_out,alpha=0.5)
+       #plt.savefig('E:\\Downloads\\DowloadsLatest\\UKY\\Research\\HorseBoneSegmentation\\Results\\ImageRegistration\\Hard To Be Good RF\\'+'Slice_'+str(k))
+       
+       #Get the evaluation metrics
+       input_im = new_input[:,:, 1]
+       output_im = new_out[:,:, 0]
+       p00=0
+       p01 =0
+       p10=0
+       p11 =0
+   
+       for i in range(input_im.shape[0]):
+           for j in range(input_im.shape[1]):
+               if input_im[i,j] == 0 and output_im[i,j] == 0:
+                   p00 = p00 + 1
+               elif input_im[i,j] == 0 and output_im[i,j] == 255:
+                   p01 = p01 + 1
+               elif input_im[i,j] == 255 and output_im[i,j] == 0:
+                   p10 = p10 + 1
+               elif input_im[i,j] == 255 and output_im[i,j] == 255:
+                   p11 = p11 + 1
+   
+       print('p00 = '+str(p00))
+       print('p01 = '+str(p01))
+       print('p10 = '+str(p10))
+       print('p11 = '+str(p11))
+        
+       if (p11+p10) != 0:
+           pixel_accuracy = (p00 + p11)/(p00 + p01+p10+p11)
+           mean_pixel_accuracy = 0.5 * (p00/(p00+p01) + p11/(p10+p11))
+           IOU = p11/(p01+p10+p11)
+           meanIOU = 0.5 *(p11/(p01+p10+p11) + p00/(p01+p10+p00))
+           prec = p11/(p11+p01)
+           recall = p11/(p11+p10)
+           F1 = 2*p11/(2*p11 + p10 + p01)
+           dice_coefficient = (2*p11)/(2*p11 + p10 + p01)
+           metrics_list.append(['Slice'+str(k), pixel_accuracy, mean_pixel_accuracy, IOU, meanIOU, prec, recall, F1, dice_coefficient])
+   
+           print('pixel_accuracy = ' + str(round(pixel_accuracy,2)))
+           print('mean_pixel_accuracy =' + str(round(mean_pixel_accuracy,2)))
+           print('IntersectionOverUnion =' + str(round(IOU,2)))
+           print('MeanIOU =' + str(round(meanIOU,2)))
+           print('precision = ' + str(round(prec,2)))
+           print('recall =' + str(round(recall,2)))
+           print('F1 =' + str(round(F1,2)))
+           print('dice_coefficient =' + str(round(dice_coefficient,2)))
+   
+           plt.text(250, 100, 'pixel_accuracy = ' + str(round(pixel_accuracy,2)), bbox=dict(fill=True, edgecolor='red', linewidth=2))
+           plt.text(250, 70, 'mean_pixel_accuracy =' + str(round(mean_pixel_accuracy,2)), bbox=dict(fill=True, edgecolor='red', linewidth=2))
+           plt.text(250, 40, 'IOU =' + str(round(IOU,2)), bbox=dict(fill=True, edgecolor='red', linewidth=2))
+           plt.text(250, 10, 'meanIOU =' + str(round(meanIOU,2)), bbox=dict(fill=True, edgecolor='red', linewidth=2))
+           plt.text(10, 10, 'precision = ' + str(round(prec,2)), bbox=dict(fill=True, edgecolor='red', linewidth=2))
+           plt.text(10, 40, 'recall =' + str(round(recall,2)), bbox=dict(fill=True, edgecolor='red', linewidth=2))
+           plt.text(10, 70, 'F1 =' + str(round(F1,2)), bbox=dict(fill=True, edgecolor='red', linewidth=2))
+           plt.text(10, 100, 'dice_coefficient =' + str(round(dice_coefficient,2)) , bbox=dict(fill=True, edgecolor='red', linewidth=2))
+           plt.savefig('E:\\Downloads\\DowloadsLatest\\UKY\\Research\\HorseBoneSegmentation\\Results\\ImageRegistration\\Tizadaisy LF\\'+'Slice_'+str(k))
+           plt.show()
+       
+   metrics_array = np.asarray(metrics_list)
+   column_values = ['Slice','PA', 'MPA', 'IOU', 'mIOU', 'precision', 'recall', 'F1', 'dice_coefficient']
+   df = pd.DataFrame(metrics_array, columns = column_values)
+   filepath = 'E:\\Downloads\\DowloadsLatest\\UKY\\Research\\HorseBoneSegmentation\\Results\\MetricsExcel\\TizadaisyLF.xlsx'
+   
+   #df.to_excel(filepath, index=False)
+   ```
+
+   
+
    
