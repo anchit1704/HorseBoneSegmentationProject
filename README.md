@@ -23,4 +23,4 @@ Steps -
    plt.show()
    ```
      
-![data](https://github.com/anchit1704/HorseBoneSegmentationProject/assets/17884278/e75f58af-9f79-46db-8154-d6ba5e5af169)
+   ![data](https://github.com/anchit1704/HorseBoneSegmentationProject/assets/17884278/e75f58af-9f79-46db-8154-d6ba5e5af169)
