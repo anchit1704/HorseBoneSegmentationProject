@@ -24,7 +24,6 @@ Steps -
    plt.show()
    ```
    ![Alt text](data.png)
-   ![data](https://github.com/anchit1704/HorseBoneSegmentationProject/assets/17884278/b13ce4a2-5b9e-4590-b90d-e35fca6dcdc7)
 
    Ground truth Segmentation plot -
 
@@ -33,8 +32,8 @@ Steps -
     plt.imshow(extracted_voxels.T[80], cmap='gray')
     plt.show()
    ```
-   
-   ![seg](https://github.com/anchit1704/HorseBoneSegmentationProject/assets/17884278/5145471a-dc2a-4454-817e-527fba97381c)
+   ![Alt text](seg.png)
+  
 
 4. Create segmentation using pixel threshold value -
 
@@ -56,8 +55,7 @@ Steps -
 
        plt.show()
     ```
-    
-    ![thresh](https://github.com/anchit1704/HorseBoneSegmentationProject/assets/17884278/1e930f82-5af9-4692-aae7-ea01b98797e5)
+    ![Alt text](thresh.png)
 
 5. Visualizing the results and measuring the performance
 
@@ -176,8 +174,7 @@ Steps -
    ```
 
    
-
-   ![results](https://github.com/anchit1704/HorseBoneSegmentationProject/assets/17884278/facdc270-0503-49c2-a0b5-b5d6617a9f19)
+   ![Alt text](results.png)
  
 
    
