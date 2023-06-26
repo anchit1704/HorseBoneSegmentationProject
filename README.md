@@ -55,6 +55,6 @@ Steps -
 
        plt.show()
     ```
-    ![Slice_80](https://github.com/anchit1704/HorseBoneSegmentationProject/assets/17884278/6ef04572-cecb-4253-8f0c-88d155473379)
+    ![threshold](https://github.com/anchit1704/HorseBoneSegmentationProject/assets/17884278/9011d7b8-0aa3-4412-9827-790fe764cda2)
     
    
