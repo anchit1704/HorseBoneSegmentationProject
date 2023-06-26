@@ -23,6 +23,7 @@ Steps -
    plt.imshow(data.T[80], cmap='gray')
    plt.show()
    ```
+   ![Alt text](data.png)
    ![data](https://github.com/anchit1704/HorseBoneSegmentationProject/assets/17884278/b13ce4a2-5b9e-4590-b90d-e35fca6dcdc7)
 
    Ground truth Segmentation plot -
