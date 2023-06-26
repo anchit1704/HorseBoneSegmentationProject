@@ -52,8 +52,9 @@ Steps -
    
        gray = gray_r.reshape(gray.shape[0],gray.shape[1])
        plt.imshow(gray, cmap='gray')
+
        plt.show()
-
     ```
-
+    ![Slice_80](https://github.com/anchit1704/HorseBoneSegmentationProject/assets/17884278/6ef04572-cecb-4253-8f0c-88d155473379)
+    
    
