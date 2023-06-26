@@ -22,6 +22,5 @@ Steps -
    plt.imshow(data.T[80], cmap='gray')
    plt.show()
    ```
-     
-   
-   ![data](https://github.com/anchit1704/HorseBoneSegmentationProject/assets/17884278/32fb93a5-5d58-4da6-893d-94b9b1bc6ee6)
+   ![data](https://github.com/anchit1704/HorseBoneSegmentationProject/assets/17884278/b13ce4a2-5b9e-4590-b90d-e35fca6dcdc7)
+
