@@ -4,4 +4,4 @@ In this project, I develop a threshold based image segmentation algorithm to det
 
 Steps - 
 
-1. Annotate the CT images using 3D slicer tool. You can download 3D slicer from [here](https://download.slicer.org/)https://download.slicer.org/.
+1. Annotate the CT images using 3D slicer tool. You can download 3D slicer from [here](https://download.slicer.org/)
