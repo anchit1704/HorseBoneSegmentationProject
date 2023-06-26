@@ -178,4 +178,7 @@ Steps -
 
    
 
+   ![results](https://github.com/anchit1704/HorseBoneSegmentationProject/assets/17884278/facdc270-0503-49c2-a0b5-b5d6617a9f19)
+ 
+
    
