@@ -90,7 +90,6 @@ Steps -
        gray = gray_r.reshape(gray.shape[0],gray.shape[1])
        plt.imshow(gray, cmap='gray')
        print(k)
-       #plt.savefig('E:\\Downloads\\DowloadsLatest\\UKY\\Research\\HorseBoneSegmentation\\Results\\Threshold\\Tizadaisy LF\\'+'Slice_'+str(k))
        plt.show()
        
        img = gray.copy()
@@ -111,7 +110,6 @@ Steps -
        plt.figure(figsize = (10,10))
        plt.imshow(new_input)
        plt.imshow(new_out,alpha=0.5)
-       #plt.savefig('E:\\Downloads\\DowloadsLatest\\UKY\\Research\\HorseBoneSegmentation\\Results\\ImageRegistration\\Hard To Be Good RF\\'+'Slice_'+str(k))
        
        #Get the evaluation metrics
        input_im = new_input[:,:, 1]
