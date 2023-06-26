@@ -13,5 +13,14 @@ Steps -
      voxels, header = nrrd.read(path + "Tizadaisy LF Segmentation.seg.nrrd")
      segmentation_info = slicerio.read_segmentation_info(path + "Tizadaisy LF Segmentation.seg.nrrd")
      segment_names_to_labels = [("LF Limb", 10), ("LF MC3", 12), ("LF MC2", 6), ("LF MC4", 8), ("Medial PSB", 4), ("Lateral PSB", 16), ("LF P1", 9)]
+     extracted_voxels, extracted_header = slicerio.extract_segments(voxels, header, segmentation_info, segment_names_to_labels)
      ```
+3. Plotting the data -
+
+   Single slice -
+   ```
+   plt.imshow(data.T[80], cmap='gray')
+   plt.show()
+
+   ```
      
