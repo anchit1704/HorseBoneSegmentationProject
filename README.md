@@ -32,7 +32,28 @@ Steps -
     plt.imshow(extracted_voxels.T[80], cmap='gray')
     plt.show()
    ```
+   
    ![seg](https://github.com/anchit1704/HorseBoneSegmentationProject/assets/17884278/5145471a-dc2a-4454-817e-527fba97381c)
 
+4. Create segmentation using pixel threshold value -
+
+   ```
+   import cv2 
+   for i in range(228):
+       print(i)
+       gray = data.T[i].copy()
+       gray_r = gray.reshape(gray.shape[0]*gray.shape[1])
+       thresh = 550
+       for j in range(gray_r.shape[0]):
+           if gray_r[j] > thresh and j < 174080:
+               gray_r[j] = 1
+           else:
+               gray_r[j] = 0
+   
+       gray = gray_r.reshape(gray.shape[0],gray.shape[1])
+       plt.imshow(gray, cmap='gray')
+       plt.show()
+
+    ```
 
    
