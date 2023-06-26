@@ -21,6 +21,5 @@ Steps -
    ```
    plt.imshow(data.T[80], cmap='gray')
    plt.show()
-
    ```
      
