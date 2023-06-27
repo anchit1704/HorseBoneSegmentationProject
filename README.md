@@ -17,7 +17,7 @@ Steps -
      ```
 3. Plotting the data -
 
-   CT image plot -
+   CT image slice plot -
    
    ```
    plt.imshow(data.T[80], cmap='gray')
